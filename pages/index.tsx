@@ -27,7 +27,6 @@ const Home = ({ pokemons }) => {
 export default Home;
 
 export async function getStaticProps() {
-  console.log('here');
   const client = new ApolloClient({
     uri: 'http://localhost:3000/api/graphql',
     cache: new InMemoryCache()
