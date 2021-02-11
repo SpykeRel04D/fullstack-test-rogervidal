@@ -40,6 +40,11 @@ const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeSpeed;
   }
 
+  main {
+    height: calc(100vh - 5.5rem - 1.5rem);
+    overflow-y: auto;
+  }
+
   ul,
   ol {
     list-style: none;
