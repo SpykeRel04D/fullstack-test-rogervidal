@@ -67,3 +67,26 @@
         }
     }
 }
+
+.evoBar {
+    width: 90%;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: 15px;
+    border-top: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .evolution {
+        margin: 3px auto;
+        p {
+            font-size: 0.7rem;
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: #19aad1;
+        }
+    }
+}

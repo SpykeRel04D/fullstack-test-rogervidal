@@ -33,6 +33,14 @@ const GET_POKEMON = gql`
       height
       weight
       weaknesses
+      prev_evolution {
+        num
+        name
+      }
+      next_evolution {
+        num
+        name
+      }
     }
   }
 `;
@@ -43,6 +51,11 @@ const Home = ({ pokemons }) => {
   const [getPokemon] = useLazyQuery(GET_POKEMON, {
     onCompleted: data => setPokemon(data.getPokemon)
   });
+  const [uidEvolution, setUidEvolition] = useState<string>('');
+  const [evolution, setEvolution] = useState(null);
+  const [getEvolution] = useLazyQuery(GET_POKEMON, {
+    onCompleted: data => setEvolution(data.getPokemon)
+  });
 
   useEffect(() => {
     if (uid !== '') {
@@ -50,6 +63,13 @@ const Home = ({ pokemons }) => {
       getPokemon({ variables: { uid: uid } });
     }
   }, [uid]);
+
+  useEffect(() => {
+    if (uidEvolution !== '') {
+      setEvolution(null);
+      getEvolution({ variables: { uid: uidEvolution } });
+    }
+  }, [uidEvolution]);
 
   return (
     <>
@@ -60,7 +80,10 @@ const Home = ({ pokemons }) => {
       <Header />
       <main>
         <PokemonList pokemons={pokemons} setUid={setUid} />
-        {pokemon && <PokemonCard pokemon={pokemon} />}
+        {pokemon && <PokemonCard pokemon={pokemon} setEvolution={setUidEvolition} />}
+        {evolution && (
+          <PokemonCard pokemon={evolution} setEvolution={setUidEvolition} evolution={true} />
+        )}
       </main>
       <Footer />
     </>
