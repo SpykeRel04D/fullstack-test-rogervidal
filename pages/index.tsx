@@ -1,10 +1,13 @@
 import Head from 'next/head';
+import React, { useState } from 'react';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PokemonList from '../components/PokemonList';
+import PokemonCard from '../components/PokemonCard';
 
 const Home = ({ pokemons }) => {
+  const [uid, setUid] = useState<string>('');
   return (
     <>
       <Head>
@@ -13,7 +16,8 @@ const Home = ({ pokemons }) => {
       </Head>
       <Header />
       <main>
-        <PokemonList props={pokemons} />
+        <PokemonList pokemons={pokemons} setUid={setUid} />
+        {uid !== '' && <PokemonCard />}
       </main>
       <Footer />
     </>

@@ -1,11 +1,11 @@
 import styles from './pokemonlist.module.scss';
 
-const PokemonList = pokemons => {
+const PokemonList = props => {
   return (
     <div className={styles.container}>
-      {pokemons.props.map((value, index) => {
+      {props.pokemons.map((value, index) => {
         return (
-          <div className={styles.frame} key={index}>
+          <div className={styles.frame} key={index} onClick={() => props.setUid(value.id)}>
             <img src={value.img} alt={`Pokemon_${value.id}`} />
           </div>
         );
