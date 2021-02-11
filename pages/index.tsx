@@ -26,7 +26,7 @@ interface PokemonDetails {
 const GET_POKEMON = gql`
   query detailPokemon($uid: String!) {
     getPokemon(uid: $uid) {
-      id
+      num
       name
       img
       type
@@ -80,7 +80,13 @@ const Home = ({ pokemons }) => {
       <Header />
       <main>
         <PokemonList pokemons={pokemons} setUid={setUid} />
-        {pokemon && <PokemonCard pokemon={pokemon} setEvolution={setUidEvolition} />}
+        {pokemon && (
+          <PokemonCard
+            pokemon={pokemon}
+            setEvolution={setUidEvolition}
+            loadedEvolution={evolution}
+          />
+        )}
         {evolution && (
           <PokemonCard pokemon={evolution} setEvolution={setUidEvolition} evolution={true} />
         )}

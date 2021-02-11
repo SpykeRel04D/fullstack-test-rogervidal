@@ -1,6 +1,28 @@
 import styles from './pokemoncard.module.scss';
 const PokemonCard = data => {
   const currentPokemon = data.pokemon;
+  const loadedEvolution = data.loadedEvolution;
+
+  const getPreviousEvolution = () => {
+    if (loadedEvolution !== null && loadedEvolution.prev_evolution == null) return null;
+    let previousEvolution =
+      loadedEvolution !== null && loadedEvolution.prev_evolution !== null
+        ? loadedEvolution.prev_evolution
+        : currentPokemon !== null && currentPokemon.prev_evolution;
+
+    return previousEvolution;
+  };
+
+  const getNextEvolution = () => {
+    if (loadedEvolution !== null && loadedEvolution.next_evolution == null) return null;
+    let nextEvolution =
+      loadedEvolution !== null && loadedEvolution.next_evolution !== null
+        ? loadedEvolution.next_evolution
+        : currentPokemon !== null && currentPokemon.next_evolution;
+
+    return nextEvolution;
+  };
+
   return (
     <>
       <div className={styles.card}>
@@ -30,28 +52,24 @@ const PokemonCard = data => {
           </p>
         </div>
       </div>
-      {!data.evolution && (currentPokemon.prev_evolution || currentPokemon.next_evolution) && (
+      {!data.evolution && (getPreviousEvolution() || getNextEvolution()) && (
         <div className={styles.evoBar}>
-          {currentPokemon.prev_evolution && (
+          {getPreviousEvolution() && (
             <div
               className={styles.evolution}
               onClick={() =>
-                data.setEvolution(
-                  currentPokemon.prev_evolution[currentPokemon.prev_evolution.length - 1].num
-                )
+                data.setEvolution(getPreviousEvolution()[getPreviousEvolution().length - 1].num)
               }>
               <p>Prev Evolution</p>
-              <span>
-                {currentPokemon.prev_evolution[currentPokemon.prev_evolution.length - 1].name}
-              </span>
+              <span>{getPreviousEvolution()[getPreviousEvolution().length - 1].name}</span>
             </div>
           )}
-          {currentPokemon.next_evolution && (
+          {getNextEvolution() && (
             <div
               className={styles.evolution}
-              onClick={() => data.setEvolution(currentPokemon.next_evolution[0].num)}>
+              onClick={() => data.setEvolution(getNextEvolution()[0].num)}>
               <p>Next Evolution</p>
-              <span>{currentPokemon.next_evolution[0].name}</span>
+              <span>{getNextEvolution()[0].name}</span>
             </div>
           )}
         </div>
