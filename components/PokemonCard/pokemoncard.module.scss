@@ -1,9 +1,9 @@
 .card {
     position: relative;
-    width: 95%;
-    max-width: 350px;
-    height: 450px;
-    border-radius: 5px;
+    width: 90%;
+    max-width: 300px;
+    height: 360px;
+    border-radius: 3px;
     border: 1px solid white;
     background: rgb(1, 45, 92);
     background: -moz-linear-gradient(135deg, rgba(1, 45, 92, 1) 0%, rgba(0, 210, 253, 1) 100%);
@@ -19,7 +19,7 @@
         margin-right: auto;
         left: 0;
         right: 0;
-        top: 16%;
+        top: 10%;
         z-index: 5;
     }
 
@@ -31,7 +31,7 @@
         margin-right: auto;
         left: 0;
         right: 0;
-        bottom: 30px;
+        bottom: 26px;
         text-align: center;
         background-color: white;
         display: flex;
@@ -51,6 +51,7 @@
             .type {
                 display: inline-block;
                 padding: 0 8px;
+                margin: 0 3px;
                 border: 1px solid red;
                 border-radius: 3px;
                 text-align: center;
@@ -60,6 +61,7 @@
         }
 
         p {
+            font-size: 0.85rem;
             align-self: flex-start;
             line-height: 1.8rem;
         }

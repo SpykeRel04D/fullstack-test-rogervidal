@@ -1,25 +1,31 @@
 import styles from './pokemoncard.module.scss';
-const PokemonCard = () => {
+const PokemonCard = data => {
+  const currentPokemon = data.pokemon;
   return (
     <div className={styles.card}>
-      <img
-        className={styles.miniature}
-        src={'http://www.serebii.net/pokemongo/pokemon/004.png'}
-        alt={'Charmander'}
-      />
+      <img className={styles.miniature} src={currentPokemon.img} alt={currentPokemon.name} />
       <div className={styles.information}>
-        <h2>Charmander</h2>
+        <h2>{currentPokemon.name}</h2>
         <div className={styles.typeZone}>
-          <div className={styles.type}>FIRE</div>
+          {currentPokemon.type.map((value, index) => {
+            return (
+              <div className={styles.type} key={index}>
+                {value}
+              </div>
+            );
+          })}
         </div>
         <p>
-          <b>Height: </b>0.61 m
+          <b>Height: </b>
+          {currentPokemon.height}
         </p>
         <p>
-          <b>Weight: </b>8.5 kg
+          <b>Weight: </b>
+          {currentPokemon.weight}
         </p>
         <p>
-          <b>Weaknesses: </b>Water, Ground, Rock
+          <b>Weaknesses: </b>
+          {currentPokemon.weaknesses.join(', ')}
         </p>
       </div>
     </div>

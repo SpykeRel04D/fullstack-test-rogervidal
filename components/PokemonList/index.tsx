@@ -5,8 +5,8 @@ const PokemonList = props => {
     <div className={styles.container}>
       {props.pokemons.map((value, index) => {
         return (
-          <div className={styles.frame} key={index} onClick={() => props.setUid(value.id)}>
-            <img src={value.img} alt={`Pokemon_${value.id}`} />
+          <div className={styles.frame} key={index} onClick={() => props.setUid(value.num)}>
+            <img src={value.img} alt={`Pokemon_${value.num}`} />
           </div>
         );
       })}
