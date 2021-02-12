@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device, DARK, RADIUS } from '../../ui/settings';
+import { device, DARK, RADIUS, HEADER_HEIGHT, FOOTER_HEIGHT } from '../../ui/settings';
 
 const List = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const List = styled.div`
   }
 
   @media ${device.desktop} {
-    height: calc(100vh - 6.5rem - 1.5rem);
+    height: calc(100vh - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT});
     width: 20%;
     max-width: 350px;
   }

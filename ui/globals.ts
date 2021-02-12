@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { LIGHT, DARK, FONT_BASE_SIZE, FONT_PRIMARY, device } from './settings';
+import { LIGHT, DARK, FONT_BASE_SIZE, FONT_PRIMARY } from './settings';
 
 const GlobalStyle = createGlobalStyle`
 

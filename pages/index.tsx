@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styled from 'styled-components';
-import { device, LIGHT } from './../ui/settings';
+import { device, LIGHT, HEADER_HEIGHT, FOOTER_HEIGHT } from './../ui/settings';
 import Pokeball from './../ui/svg/Pokeball.svg';
 import React, { useState, useEffect } from 'react';
 import client from '../services/apollo-client';
@@ -44,6 +44,11 @@ const CardZone = styled.div`
     width: 90%;
     margin-top: 20px;
   }
+
+  @media ${device.desktop} {
+    height: calc(100vh - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT});
+    margin-top: 0;
+  }
 `;
 
 const PokeContainer = styled.div`
@@ -67,6 +72,15 @@ const PokeContainer = styled.div`
     .pokeball {
       width: 44%;
       max-width: 225px;
+    }
+  }
+
+  @media ${device.desktop} {
+    align-self: flex-start;
+
+    .pokeball {
+      width: 34%;
+      max-width: 150px;
     }
   }
 `;

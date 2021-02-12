@@ -9,6 +9,9 @@ export const DARK = '#1b1d1c';
 export const MEDIUM = '#ef3e4a';
 export const BUTTON = '#19aad1';
 
+export const FOOTER_HEIGHT = '1.5rem';
+export const HEADER_HEIGHT = '5.5rem';
+
 const size = {
   mobile: '550px',
   tablet: '770px',
