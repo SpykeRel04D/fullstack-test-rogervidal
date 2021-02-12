@@ -151,7 +151,12 @@ const Button = styled.button`
   }
 `;
 
-const PokemonCard = data => {
+const PokemonCard = (data: {
+  pokemon: any;
+  loadedEvolution?: any;
+  evolution?: any;
+  setEvolution: (arg0: string) => any;
+}) => {
   const currentPokemon = data.pokemon;
   const loadedEvolution = data.loadedEvolution;
 

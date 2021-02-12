@@ -12,7 +12,7 @@ const MainContainer = styled.div`
   }
 `;
 
-const Main = props => {
+const Main = (props: { children: any }) => {
   return <MainContainer>{props.children}</MainContainer>;
 };
 

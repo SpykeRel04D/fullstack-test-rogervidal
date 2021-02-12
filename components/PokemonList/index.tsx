@@ -14,7 +14,7 @@ const List = styled.div`
 
   @media ${device.desktop} {
     height: calc(100vh - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT});
-    width: 20%;
+    width: 30%;
     max-width: 350px;
   }
 `;
@@ -37,7 +37,12 @@ const Frame = styled.div`
   }
 `;
 
-const PokemonList = props => {
+interface PokemonStructure {
+  num: string;
+  img: string;
+}
+
+const PokemonList = (props: { pokemons: PokemonStructure[]; setUid: (arg0: string) => any }) => {
   return (
     <List>
       {props.pokemons.map((value, index) => {

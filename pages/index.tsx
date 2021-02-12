@@ -85,15 +85,40 @@ const PokeContainer = styled.div`
   }
 `;
 
+interface EvolutionData {
+  num: string;
+  name: string;
+}
+
+interface PokemonData {
+  num: string;
+  name: string;
+  img: string;
+  type: string[];
+  height: string;
+  weight: string;
+  weaknesses: string[];
+  prev_evolution?: EvolutionData[];
+  next_evolution?: EvolutionData[];
+}
+
+interface PokemonGetData {
+  getPokemon(getPokemon: PokemonData): void;
+}
+
+interface PokemonVariable {
+  uid: string;
+}
+
 const Home = ({ pokemons }) => {
   const [uid, setUid] = useState<string>('');
   const [pokemon, setPokemon] = useState(null);
-  const [getPokemon] = useLazyQuery(GET_POKEMON, {
+  const [getPokemon] = useLazyQuery<PokemonGetData, PokemonVariable>(GET_POKEMON, {
     onCompleted: data => setPokemon(data.getPokemon)
   });
   const [uidEvolution, setUidEvolition] = useState<string>('');
   const [evolution, setEvolution] = useState(null);
-  const [getEvolution] = useLazyQuery(GET_POKEMON, {
+  const [getEvolution] = useLazyQuery<PokemonGetData, PokemonVariable>(GET_POKEMON, {
     onCompleted: data => setEvolution(data.getPokemon)
   });
 
