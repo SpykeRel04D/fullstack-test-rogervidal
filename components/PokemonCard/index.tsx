@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device, BUTTON, RADIUS, BORDER } from '../../ui/settings';
+import { device, BUTTON, RADIUS, BORDER, MEDIUM } from '../../ui/settings';
 
 const Holder = styled.div`
   width: 100%;
@@ -95,7 +95,7 @@ const TypeBar = styled.div`
     display: inline-block;
     padding: 0 8px;
     margin: 0 3px;
-    border: 1px solid red;
+    border: 1px solid ${MEDIUM};
     border-radius: 3px;
     text-align: center;
     color: red;

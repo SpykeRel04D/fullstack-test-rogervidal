@@ -1,5 +1,6 @@
 export const BORDER = '#999';
 export const RADIUS = '3px';
+export const BIG_RADIUS = '10px';
 
 export const FONT_PRIMARY = 'Signika, Helvetica, Arial, sans-serif';
 export const FONT_BASE_SIZE = 16;

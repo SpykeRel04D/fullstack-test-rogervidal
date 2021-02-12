@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device, DARK, RADIUS, HEADER_HEIGHT, FOOTER_HEIGHT } from '../../ui/settings';
+import { device, BIG_RADIUS, HEADER_HEIGHT, FOOTER_HEIGHT } from '../../ui/settings';
 
 const List = styled.div`
   display: flex;
@@ -23,12 +23,12 @@ const Frame = styled.div`
   width: 60px;
   height: 60px;
   margin: 5px;
-  border-radius: ${RADIUS};
+  border-radius: ${BIG_RADIUS};
   padding: 6px;
 
   &:hover {
     cursor: pointer;
-    background-color: ${DARK};
+    background-color: black;
   }
 
   @media ${device.tablet} {
