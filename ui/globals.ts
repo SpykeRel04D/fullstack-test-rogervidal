@@ -1,9 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { LIGHT, DARK, FONT_BASE_SIZE, FONT_PRIMARY } from './settings';
+import { LIGHT, DARK, FONT_BASE_SIZE, FONT_PRIMARY, device } from './settings';
 
 const GlobalStyle = createGlobalStyle`
-  *,
+
+*,
   *::before,
   *::after {
     box-sizing: border-box;
@@ -40,9 +41,14 @@ const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeSpeed;
   }
 
-  main {
-    height: calc(100vh - 5.5rem - 1.5rem);
-    overflow-y: auto;
+  #__next {
+    min-height: 100vh;
+  }
+
+  .app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   ul,

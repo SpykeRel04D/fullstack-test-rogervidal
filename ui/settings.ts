@@ -8,3 +8,15 @@ export const LIGHT = '#c7c6c4';
 export const DARK = '#1b1d1c';
 export const MEDIUM = '#ef3e4a';
 export const BUTTON = '#19aad1';
+
+const size = {
+  mobile: '550px',
+  tablet: '770px',
+  desktop: '1200px'
+};
+
+export const device = {
+  mobile: `(min-width: ${size.mobile})`,
+  tablet: `(min-width: ${size.tablet})`,
+  desktop: `(min-width: ${size.desktop})`
+};

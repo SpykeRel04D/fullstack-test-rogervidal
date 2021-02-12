@@ -1,27 +1,15 @@
 import Head from 'next/head';
+import styled from 'styled-components';
+import { device, LIGHT } from './../ui/settings';
+import Pokeball from './../ui/svg/Pokeball.svg';
 import React, { useState, useEffect } from 'react';
 import client from '../services/apollo-client';
 import { gql, useLazyQuery } from '@apollo/client';
+import Main from '../components/MainContainer';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PokemonList from '../components/PokemonList';
 import PokemonCard from '../components/PokemonCard';
-
-interface PokemonSimplified {
-  num: string;
-  name: string;
-}
-interface PokemonDetails {
-  id: string;
-  name: string;
-  img: string;
-  type: string[];
-  height: string;
-  weight: string;
-  weaknesses: string[];
-  /* prev_evolution?: PokemonSimplified[];
-  next_evolution?: PokemonSimplified[]; */
-}
 
 const GET_POKEMON = gql`
   query detailPokemon($uid: String!) {
@@ -45,6 +33,44 @@ const GET_POKEMON = gql`
   }
 `;
 
+const CardZone = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
+    margin-top: 20px;
+  }
+`;
+
+const PokeContainer = styled.div`
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+
+  .pokeball {
+    display: block;
+    margin: 0 auto;
+    fill: ${LIGHT};
+    width: 36%;
+    max-width: 110px;
+  }
+
+  @media ${device.tablet} {
+    width: 50%;
+    font-size: 1.3rem;
+    margin-top: 40px;
+    .pokeball {
+      width: 44%;
+      max-width: 225px;
+    }
+  }
+`;
+
 const Home = ({ pokemons }) => {
   const [uid, setUid] = useState<string>('');
   const [pokemon, setPokemon] = useState(null);
@@ -60,6 +86,7 @@ const Home = ({ pokemons }) => {
   useEffect(() => {
     if (uid !== '') {
       setPokemon(null);
+      setEvolution(null);
       getPokemon({ variables: { uid: uid } });
     }
   }, [uid]);
@@ -77,21 +104,37 @@ const Home = ({ pokemons }) => {
         <title>Fullstack Test</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <main>
-        <PokemonList pokemons={pokemons} setUid={setUid} />
-        {pokemon && (
-          <PokemonCard
-            pokemon={pokemon}
-            setEvolution={setUidEvolition}
-            loadedEvolution={evolution}
-          />
-        )}
-        {evolution && (
-          <PokemonCard pokemon={evolution} setEvolution={setUidEvolition} evolution={true} />
-        )}
-      </main>
-      <Footer />
+      <div className="app">
+        <Header />
+        <Main>
+          <PokemonList pokemons={pokemons} setUid={setUid} />
+          <CardZone>
+            {!pokemon && (
+              <PokeContainer>
+                <Pokeball className="pokeball" />
+                Select a Pokemon
+              </PokeContainer>
+            )}
+            {pokemon && (
+              <PokemonCard
+                pokemon={pokemon}
+                setEvolution={setUidEvolition}
+                loadedEvolution={evolution}
+              />
+            )}
+            {!evolution && (
+              <PokeContainer>
+                <Pokeball className="pokeball" />
+                Select an Evolution
+              </PokeContainer>
+            )}
+            {evolution && (
+              <PokemonCard pokemon={evolution} setEvolution={setUidEvolition} evolution={true} />
+            )}
+          </CardZone>
+        </Main>
+        <Footer />
+      </div>
     </>
   );
 };
